@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillCampus</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0g7TN62aO6HgR94pW1WJmTEzgcDu3g1c"></script>
+    <script>
+        function initMap() {
+            var mapCenter = { lat: 39.7028417, lng: 141.1381852 };  // 盛岡駅
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: mapCenter
+            });
+
+            var markers = [
+                { position: { lat: 39.7021874, lng: 141.1331666 }, title: 'アイーナ', color: 'red' },
+                { position: { lat: 39.700084, lng: 141.132751 }, title: 'ユニゾインエクスプレス', color: 'blue' },
+                { position: { lat: 39.6977465, lng: 141.1353692 }, title: 'Mi Cafeto', color: 'green' }
+            ];
+
+            markers.forEach(function (markerInfo) {
+                var marker = new google.maps.Marker({
+                    position: markerInfo.position,
+                    map: map,
+                    title: markerInfo.title,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        fillColor: markerInfo.color,
+                        fillOpacity: 1,
+                        strokeColor: markerInfo.color,
+                        strokeWeight: 2,
+                        scale: 7
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+
+<body onload="initMap()">
+    <h1 style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Icon" style="width: 40px; height: 40px; margin-right: 10px;">
+        盛岡周辺Map
+    </h1>
+    <div id="map" style="height: 500px; width: 100%;"></div>
+
+    <h2>Photo&Movie</h2>
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 33.33%; text-align: center;">
+                <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="Image 1" style="width: 100%; height: auto;">
+            </td>
+            <td style="width: 33.33%; text-align: center;">
+                <img src="{{ url_for('static', filename='images/image2.gif') }}" alt="Image 2" style="width: 100%; height: auto;">
+            </td>
+            <td style="width: 33.33%; text-align: center;">
+                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/your_video_id" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
