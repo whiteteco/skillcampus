@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillCampus</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0g7TN62aO6HgR94pW1WJmTEzgcDu3g1c"></script>
+    <title>盛岡マップ</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
     <script>
         function initMap() {
             var mapCenter = { lat: 39.7028417, lng: 141.1381852 };  // 盛岡駅
@@ -43,11 +43,11 @@
 <body onload="initMap()">
     <h1 style="display: flex; align-items: center;">
         <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Icon" style="width: 40px; height: 40px; margin-right: 10px;">
-        盛岡周辺Map
+        盛岡マップ
     </h1>
     <div id="map" style="height: 500px; width: 100%;"></div>
 
-    <h2>Photo&Movie</h2>
+    <h2>写真と動画ギャラリー</h2>
     <table style="width: 100%;">
         <tr>
             <td style="width: 33.33%; text-align: center;">
