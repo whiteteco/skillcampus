@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #4a4a4a;
+    color: white;
+    padding: 15px;
+}
+
+.header .logo {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.info-section {
+    background-color: #f0f0ff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h2 {
+    margin-bottom: 15px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group select {
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.map-section {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-section .map {
+    height: 450px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.facility-info,
+.nearby-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 48%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.facility-info h3,
+.nearby-info h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.contact-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.contact-button {
+    background-color: #6a0dad;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-button:hover {
+    background-color: #5b0cab;
+}
+
+.footer {
+    background-color: #4a4a4a;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

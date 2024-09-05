@@ -4,63 +4,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillCampus</title>
+    <title>Skill CAMPUS in 盛岡</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
     <script>
         function initMap() {
-            var mapCenter = { lat: 39.7028417, lng: 141.1381852 };  // 盛岡駅
-
+            var mapCenter = { lat: 39.7028417, lng: 141.1381852 };  // 盛岡駅の座標
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
+                zoom: 14,
                 center: mapCenter
             });
 
+            // マーカーの設定例
             var markers = [
-                { position: { lat: 39.7021874, lng: 141.1331666 }, title: 'アイーナ', color: 'red' },
-                { position: { lat: 39.700084, lng: 141.132751 }, title: 'ユニゾインエクスプレス', color: 'blue' },
-                { position: { lat: 39.6977465, lng: 141.1353692 }, title: 'Mi Cafeto', color: 'green' }
+                { position: { lat: 39.7021874, lng: 141.1331666 }, title: 'アイーナ' },
+                { position: { lat: 39.700084, lng: 141.132751 }, title: 'ユニゾインエクスプレス' },
+                { position: { lat: 39.6977465, lng: 141.1353692 }, title: 'Mi Cafeto' }
             ];
 
+            // 各マーカーを地図に表示
             markers.forEach(function (markerInfo) {
-                var marker = new google.maps.Marker({
+                new google.maps.Marker({
                     position: markerInfo.position,
                     map: map,
-                    title: markerInfo.title,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        fillColor: markerInfo.color,
-                        fillOpacity: 1,
-                        strokeColor: markerInfo.color,
-                        strokeWeight: 2,
-                        scale: 7
-                    }
+                    title: markerInfo.title
                 });
             });
         }
+
+        window.onload = initMap;
     </script>
 </head>
 
-<body onload="initMap()">
-    <h1 style="display: flex; align-items: center;">
-        <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Icon" style="width: 40px; height: 40px; margin-right: 10px;">
-        盛岡マップ
-    </h1>
-    <div id="map" style="height: 500px; width: 100%;"></div>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Logo" class="logo">
+            <h1>Skill CAMPUS in 盛岡</h1>
+        </header>
 
-    <h2>写真と動画ギャラリー</h2>
-    <table style="width: 100%;">
-        <tr>
-            <td style="width: 33.33%; text-align: center;">
-                <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="Image 1" style="width: 100%; height: auto;">
-            </td>
-            <td style="width: 33.33%; text-align: center;">
-                <img src="{{ url_for('static', filename='images/image2.gif') }}" alt="Image 2" style="width: 100%; height: auto;">
-            </td>
-            <td style="width: 33.33%; text-align: center;">
-                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/your_video_id" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </td>
-        </tr>
-    </table>
+        <main class="main-content">
+            <section class="info-section">
+                <h2>ようこそ、Skill CAMPUS in 盛岡へ！</h2>
+                <p>当サイトは、岩手県盛岡市内を巨大キャンパスとして、さまざまなスキル合宿エリアを提供しています。</p>
+                <p>以下の合宿規模を入力し、表示される合宿場所をクリックすると近隣の関連施設が連動して表示されます。</p>
+                <div class="input-group">
+                    <label for="capacity">参加人数</label>
+                    <select id="capacity" name="capacity">
+                        <option value="">人数</option>
+                        <option value="10">10人</option>
+                        <option value="50">50人</option>
+                        <option value="100">100人</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="days">開催日数</label>
+                    <select id="days" name="days">
+                        <option value="">日数</option>
+                        <option value="1">1日</option>
+                        <option value="3">3日</option>
+                        <option value="7">7日</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="map-section">
+                <div id="map" class="map"></div>
+            </section>
+        </main>
+
+        <section class="details-section">
+            <div class="facility-info">
+                <h3>クリックした合宿会場</h3>
+                <p>もりもり交流センター</p>
+                <p>分類: 公共施設</p>
+                <p>収容可能人数: 100人</p>
+            </div>
+
+            <div class="nearby-info">
+                <h3>近隣の登録宿泊施設</h3>
+                <ul>
+                    <li>星の宿 (ホテル: 最大121人)</li>
+                    <li>風の旅館 (旅館: 最大20人)</li>
+                    <li>山のホテル (ホテル: 最大165人)</li>
+                </ul>
+
+                <h3>近隣の登録飲食店</h3>
+                <ul>
+                    <li>彩りダイニング (タイ料理: 最大93人)</li>
+                    <li>風味食堂 (洋食: 最大76人)</li>
+                    <li>花咲冷麺 (焼肉冷麺: 最大60人)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <button class="contact-button">お問い合わせしてみる</button>
+        </section>
+
+        <footer class="footer">
+            Copyright © 2024 SkillCAMPUS in 盛岡
+        </footer>
+    </div>
 </body>
 
 </html>
