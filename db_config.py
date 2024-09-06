@@ -1,9 +1,7 @@
-import pandas as pd
-import sqlite3
-import os
 import logging
+import os
 from dotenv import load_dotenv
-from peewee import Model, IntegerField, CharField, TextField, TimestampField
+from peewee import Model, IntegerField, CharField, DecimalField, DecimalField, CharField, IntegerField
 from playhouse.db_url import connect
 
 load_dotenv(override=True)
@@ -21,8 +19,8 @@ class Map(Model):
 
     id = IntegerField(primary_key=True)  # idは自動で追加されるが明示
     name = CharField()
-    lat = IntegerField()
-    lng = IntegerField()
+    lat = DecimalField()
+    lng = DecimalField()
     category = CharField()
     capacity = IntegerField()
 
