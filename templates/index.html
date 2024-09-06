@@ -6,34 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill CAMPUS in 盛岡</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
-    <script>
-        function initMap() {
-            var mapCenter = { lat: 39.7028417, lng: 141.1381852 };  // 盛岡駅の座標
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14,
-                center: mapCenter
-            });
-
-            // マーカーの設定例
-            var markers = [
-                { position: { lat: 39.7021874, lng: 141.1331666 }, title: 'アイーナ' },
-                { position: { lat: 39.700084, lng: 141.132751 }, title: 'ユニゾインエクスプレス' },
-                { position: { lat: 39.6977465, lng: 141.1353692 }, title: 'Mi Cafeto' }
-            ];
-
-            // 各マーカーを地図に表示
-            markers.forEach(function (markerInfo) {
-                new google.maps.Marker({
-                    position: markerInfo.position,
-                    map: map,
-                    title: markerInfo.title
-                });
-            });
-        }
-
-        window.onload = initMap;
-    </script>
 </head>
 
 <body>
@@ -44,7 +16,7 @@
         </header>
 
         <main class="main-content">
-            <section class="info-section" style="text-align:center;">
+            <section class="info-section" style="text-align:center; flex: 1;">
                 <br>
                 <h2>ようこそ、Skill CAMPUS in 盛岡へ！</h2>
                 <p>当サイトは、岩手県盛岡市内を巨大キャンパスとして</p>
@@ -56,29 +28,37 @@
                 <br>
                 <br>
                 <div class="input-group" style="text-align:center;">
-                    <label for="capacity">参加人数</label>
+                    <label for="capacity">Capacity</label>
                     <select id="capacity" name="capacity" style="width:200px;">
                         <option value="">人数</option>
-                        <option value="10">10人</option>
+                        <option value="10">20人</option>
                         <option value="50">50人</option>
                         <option value="100">100人</option>
                     </select>
                 </div>
-                <div class="input-group" style="text-align:center;">
-                    <label for="days">開催日数</label>
-                    <select id="days" name="days" style="width:200px;">
-                        <option value="">日数</option>
-                        <option value="1">1日</option>
-                        <option value="3">3日</option>
-                        <option value="7">7日</option>
-                    </select>
-                </div>
+                
                 <button class="contact-button">いますぐ問い合わせる</button>
             </section>
 
-            <section class="map-section">
-                <div id="map" class="map"></div>
+            <section class="map-section" style="flex: 1;">
+                <div id="map" style="height: 100%; width: 100%;"></div>
+                <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
+                <script>
+                    function initMap() {
+                        var location = { lat: 39.7036, lng: 141.1527 };  // 盛岡市の座標
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 12,
+                            center: location
+                        });
+                        var marker = new google.maps.Marker({
+                            position: location,
+                            map: map
+                        });
+                    }
+                    google.maps.event.addDomListener(window, 'load', initMap);
+                </script>
             </section>
+
         </main>
 
         <section class="details-section">
