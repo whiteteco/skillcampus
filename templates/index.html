@@ -50,11 +50,20 @@
                             zoom: 12,
                             center: location
                         });
+                
+                        // マーカーのオリジナル画像を指定
+                        var customIcon = {
+                            url: 'https://mokeruto.jp/sc/hotel.png',  // 画像のURL
+                            scaledSize: new google.maps.Size(50, 50)  // 画像のサイズ（必要に応じて調整）
+                        };
+                
                         var marker = new google.maps.Marker({
                             position: location,
-                            map: map
+                            map: map,
+                            icon: customIcon  // カスタムアイコンを指定
                         });
                     }
+                
                     google.maps.event.addDomListener(window, 'load', initMap);
                 </script>
             </section>
