@@ -1,14 +1,5 @@
 from flask import Flask, jsonify, render_template
-from peewee import (
-    SqliteDatabase,
-    Model,
-    IntegerField,
-    CharField,
-    FloatField,
-    FloatField,
-    CharField,
-    IntegerField,
-)
+from peewee import SqliteDatabase, Model, IntegerField, CharField, CharField
 
 # Flask アプリケーション
 app = Flask(__name__)
@@ -17,14 +8,11 @@ app = Flask(__name__)
 db = SqliteDatabase("peewee_db_sqlite")
 
 
-# sc_map テーブルのモデル定義
-class SCMap(Model):
+# sc_maker テーブルのモデル定義
+class SCMaker(Model):
     id = IntegerField()
-    name = CharField()
-    lat = FloatField()
-    lng = FloatField()
     category = CharField()
-    capacity = IntegerField()
+    url = CharField()
 
     class Meta:
         database = db  # データベースを指定
@@ -35,9 +23,9 @@ db.connect()
 
 
 # データベースからデータを取得する関数
-def get_map_data():
-    # sc_map テーブルからすべてのレコードを取得
-    query = SCMap.select()
+def get_maker_data():
+    # sc_maker テーブルからすべてのレコードを取得
+    query = SCMaker.select()
 
     # データをリスト形式に変換
     data = []
@@ -45,11 +33,8 @@ def get_map_data():
         data.append(
             {
                 "id": record.id,
-                "name": record.name,
-                "lat": record.lat,
-                "lng": record.lng,
                 "category": record.category,
-                "capacity": record.capacity,
+                "url": record.url,
             }
         )
 
@@ -57,9 +42,9 @@ def get_map_data():
 
 
 # 地図データを返すAPIエンドポイント
-@app.route("/map-data")
-def map_data():
-    data = get_map_data()
+@app.route("/maker-data")
+def maker_data():
+    data = get_maker_data()
     return jsonify(data)
 
 
