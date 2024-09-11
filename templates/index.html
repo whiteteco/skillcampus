@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill CAMPUS in 盛岡</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 </head>
 
 <body>
@@ -16,7 +17,7 @@
         </header>
 
         <main class="main-content">
-            <section class="info-section" style="text-align:center;  width: 250px;">
+            <section class="info-section" style="text-align:center; width: 250px;">
                 <br>
                 <h2>ようこそ、Skill CAMPUS in 盛岡へ！</h2>
                 <p>当サイトは、岩手県盛岡市内を巨大キャンパスとして</p>
@@ -42,52 +43,50 @@
 
             <section class="map-section" style="flex-grow: 1;">
                 <div id="map" style="height: 100%; width: 100%;"></div>
-                <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
+                <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
                 <script>
-                    function initMap() {
-                        var location = { lat: 39.703865, lng: 141.151339 };  // 石割り桜座標
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 14,
-                            center: location
+                    var map = L.map('map').setView([39.7036, 141.1527], 14);  // 盛岡市の座標
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                    // サーバーからマーカー情報を取得
+                    fetch('/markers')
+                        .then(response => response.json())
+                        .then(data => {
+                            data.forEach(marker => {
+                                L.marker([marker.lat, marker.lng]).addTo(map)
+                                    .bindPopup(marker.name);
+                            });
                         });
-
-                        // マーカーのオリジナル画像を指定
-                        var customIcon = {
-                            url: 'https://mokeruto.jp/sc/hotel.png',  // 画像のURL
-                            scaledSize: new google.maps.Size(50, 50)  // 画像のサイズ（必要に応じて調整）
-                        };
-
-                        var marker = new google.maps.Marker({
-                            position: location,
-                            map: map,
-                            icon: customIcon  // カスタムアイコンを指定
-                        });
-                    }
-
-                    google.maps.event.addDomListener(window, 'load', initMap);
                 </script>
             </section>
-
         </main>
 
         <section class="details-section">
+            <!-- 学校情報 -->
             <div class="facility-info">
-                <h3>クリックした合宿会場</h3>
-                <p>もりもり交流センター</p>
-                <p>分類: 公共施設</p>
-                <p>収容可能人数: 100人</p>
+                <h3>学校</h3>
+                {% for school in school %}
+                    <p>{{ school.name }} (座標: {{ school.lat }}, {{ school.lng }})</p>
+                {% endfor %}
             </div>
+
+            <!-- 宿泊施設情報 -->
             <div class="facility-info">
-                <h3>近隣の登録飲食店</h3>
-                <p>彩りダイニング (タイ料理: 最大93人)</p>
-                <p>風味食堂 (洋食: 最大76人)</p>
-                <p>花咲冷麺 (焼肉冷麺: 最大60人)</p>
+                <h3>宿泊施設</h3>
+                {% for hotel in hotel %}
+                    <p>{{ hotel.name }} (座標: {{ hotel.lat }}, {{ hotel.lng }})</p>
+                {% endfor %}
             </div>
+
+            <!-- 飲食店情報 -->
             <div class="facility-info">
-                <h3>近隣の登録宿泊施設</h3>
-                <p>星の宿 (ホテル: 最大121人)</p>
-                <p>風の旅館 (旅館: 最大20人)</p>
-                <p>山のホテル (ホテル: 最大165人)</p>
+                <h3>飲食店</h3>
+                {% for food in food %}
+                    <p>{{ food.name }} (座標: {{ food.lat }}, {{ food.lng }})</p>
+                {% endfor %}
             </div>
         </section>
 

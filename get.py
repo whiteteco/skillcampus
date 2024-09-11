@@ -1,14 +1,5 @@
 from flask import Flask, jsonify, render_template
-from peewee import (
-    SqliteDatabase,
-    Model,
-    IntegerField,
-    CharField,
-    FloatField,
-    FloatField,
-    CharField,
-    IntegerField,
-)
+from peewee import SqliteDatabase, Model, IntegerField, CharField, FloatField
 
 # Flask アプリケーション
 app = Flask(__name__)
@@ -70,4 +61,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(port=8000, debug=True)
+    app.run(debug=True)
