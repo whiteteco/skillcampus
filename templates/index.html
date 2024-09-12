@@ -17,7 +17,7 @@
         </header>
 
         <main class="main-content">
-            <section class="info-section" style="text-align:center; width: 250px;">
+            <section class="info-section" style="text-align:center; width: 250px; height: 500px;">
                 <br>
                 <h2>ようこそ、Skill CAMPUS in 盛岡へ！</h2>
                 <p>当サイトは、岩手県盛岡市内を巨大キャンパスとして</p>
@@ -45,7 +45,7 @@
                 <div id="map" style="height: 100%; width: 100%;"></div>
                 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
                 <script>
-                    var map = L.map('map').setView([39.7036, 141.1527], 14);  // 盛岡市の座標
+                    var map = L.map('map').setView([39.7014371, 141.136723], 14);  // 盛岡駅座標
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -56,43 +56,54 @@
                         .then(response => response.json())
                         .then(data => {
                             data.forEach(marker => {
-                                L.marker([marker.lat, marker.lng]).addTo(map)
+                                var customIcon = L.icon({
+                                    iconUrl: marker.icon,  // マーカーのアイコンURL
+                                    iconSize: [38, 38],    // アイコンのサイズ
+                                    iconAnchor: [19, 38],  // アイコンのアンカー位置
+                                    popupAnchor: [0, -38]  // ポップアップのアンカー位置
+                                });
+                                L.marker([marker.lat, marker.lng], { icon: customIcon }).addTo(map)
                                     .bindPopup(marker.name);
                             });
                         });
                 </script>
+
             </section>
         </main>
 
-        <section class="details-section">
-            <!-- 学校情報 -->
-            <div class="facility-info">
-                <h3>学校</h3>
+    <section class="details-section">
+        <div class="facility-info">
+            <h3>合宿候補</h3>
+            <ul>
                 {% for school in school %}
-                    <p>{{ school.name }} (座標: {{ school.lat }}, {{ school.lng }})</p>
+                    <li> {{ school.name }}</li> <!-- リストアイテムに●を追加 -->
                 {% endfor %}
-            </div>
+            </ul>
+        </div>
 
-            <!-- 宿泊施設情報 -->
-            <div class="facility-info">
-                <h3>宿泊施設</h3>
+        <div class="facility-info">
+            <h3>近隣の宿泊施設</h3>
+            <ul>
                 {% for hotel in hotel %}
-                    <p>{{ hotel.name }} (座標: {{ hotel.lat }}, {{ hotel.lng }})</p>
+                    <li> {{ hotel.name }}</li> <!-- リストアイテムに●を追加 -->
                 {% endfor %}
-            </div>
+            </ul>
+        </div>
 
-            <!-- 飲食店情報 -->
-            <div class="facility-info">
-                <h3>飲食店</h3>
+        <div class="facility-info">
+            <h3>近隣のおすすめ飲食店</h3>
+            <ul>
                 {% for food in food %}
-                    <p>{{ food.name }} (座標: {{ food.lat }}, {{ food.lng }})</p>
+                    <li> {{ food.name }}</li> <!-- リストアイテムに●を追加 -->
                 {% endfor %}
-            </div>
-        </section>
+            </ul>
+        </div>
 
-        <footer class="footer">
-            Copyright © 2024 SkillCAMPUS in 盛岡
-        </footer>
+    </section>
+
+    <footer class="footer">
+        Copyright © 2024 SkillCAMPUS in 盛岡
+    </footer>
     </div>
 </body>
 

@@ -8,7 +8,7 @@ db = SqliteDatabase("peewee_db.sqlite")
 
 
 # sc_mapモデルの定義
-class Sc_Map(Model):
+class Map(Model):
     lat = FloatField()
     lng = FloatField()
     name = TextField()
@@ -16,14 +16,25 @@ class Sc_Map(Model):
 
     class Meta:
         database = db
+        db_table = "sc_map"  # テーブル名を指定
 
 
-# カテゴリごとのデータを取得
+# sc_makerモデルの定義
+class Marker(Model):
+    icon_url = TextField()  # マーカーの画像URL
+    category = TextField()  # カテゴリ（school, hotel, foodなど）
+
+    class Meta:
+        database = db
+        db_table = "sc_maker"  # テーブル名を指定
+
+
+# カテゴリごとのデータを取得して表示
 @app.route("/")
 def index():
-    school = Sc_Map.select().where(Sc_Map.category == "school")
-    hotel = Sc_Map.select().where(Sc_Map.category == "hotel")
-    food = Sc_Map.select().where(Sc_Map.category == "food")
+    school = Map.select().where(Map.category == "school")
+    hotel = Map.select().where(Map.category == "hotel")
+    food = Map.select().where(Map.category == "food")
 
     # カテゴリごとのリストをテンプレートに渡す
     return render_template("index.html", school=school, hotel=hotel, food=food)
@@ -32,8 +43,15 @@ def index():
 # マーカー情報を取得するAPI
 @app.route("/markers")
 def get_markers():
-    markers = Sc_Map.select()
-    markers_list = [{"lat": marker.lat, "lng": marker.lng, "name": marker.name} for marker in markers]
+    # sc_mapテーブルから位置情報を取得し、sc_makerテーブルから対応するマーカーURLを取得
+    markers = Map.select(Map.lat, Map.lng, Map.name, Marker.icon_url).join(
+        Marker, on=(Map.category == Marker.category)
+    )  # カテゴリで結合
+
+    markers_list = [
+        {"lat": marker.lat, "lng": marker.lng, "name": marker.name, "icon": marker.icon_url}
+        for marker in markers
+    ]
     return jsonify(markers_list)
 
 

@@ -15,7 +15,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 0px;
     height: 100vh;
 }
 
@@ -24,7 +24,7 @@ body {
     align-items: center;
     background-color: #f9f9f9;
     color: #6a0dad;
-    padding: 15px;
+    padding: 20px;
 }
 
 .header .logo {
@@ -41,11 +41,12 @@ body {
 }
 
 .info-section {
-    background-color: #f0f0ff;
+    background-color: #e0e0f8;
     flex-basis: 40%;
-    /* 左側のセクションを30%に固定 */
+    /* 左側のセクションを40%に固定 */
     display: flex;
     flex-direction: column;
+    border-radius: 8px;
 }
 
 .info-section h2 {
@@ -84,11 +85,21 @@ body {
 
 .facility-info,
 .nearby-info {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #ffffff;
+    /* バックカラーを白に */
+    padding: 10px;
     border-radius: 8px;
-    width: 48%;
+    width: 32%;
+    /* カラム間のスペースを作るために幅を調整 */
+    margin: 0px;
+    /* カラム間に余白を追加 */
+    border: 2px solid #6a0dad;
+    /* 太い黒の枠を追加 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    /* カラムを横に並べる */
+    vertical-align: top;
+    /* カラムを上揃え */
 }
 
 .facility-info h3,
@@ -112,7 +123,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
     width: 270px;
-    /* ボタンの横幅を200pxに固定 */
+    /* ボタンの横幅を270pxに固定 */
     text-align: center;
     /* テキストを中央揃えにする */
     margin: 0 auto;
@@ -128,4 +139,28 @@ body {
     color: white;
     text-align: center;
     padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+    /* デフォルトの箇条書きスタイルを無効化 */
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    /* 各リストアイテムの下に余白を作成 */
+    padding-left: 20px;
+    /* 各リストアイテムの左に余白を作成 */
+    position: relative;
+}
+
+li::before {
+    content: "●";
+    /* 各リストアイテムの先頭に●を表示 */
+    position: absolute;
+    left: 0;
+    color: #333;
+    /* ●の色を変更 */
 }
