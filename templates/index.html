@@ -45,65 +45,79 @@
                 <div id="map" style="height: 100%; width: 100%;"></div>
                 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
                 <script>
-                    var map = L.map('map').setView([39.7014371, 141.136723], 14);  // 盛岡駅座標
+                    var map = L.map('map').setView([39.6974099, 141.1442905], 14.5);  // 地図の中心座標（啄木父子の歌碑）
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(map);
 
-                    // サーバーからマーカー情報を取得
-                    fetch('/markers')
-                        .then(response => response.json())
-                        .then(data => {
-                            data.forEach(marker => {
-                                var customIcon = L.icon({
-                                    iconUrl: marker.icon,  // マーカーのアイコンURL
-                                    iconSize: [38, 38],    // アイコンのサイズ
-                                    iconAnchor: [19, 38],  // アイコンのアンカー位置
-                                    popupAnchor: [0, -38]  // ポップアップのアンカー位置
-                                });
-                                L.marker([marker.lat, marker.lng], { icon: customIcon }).addTo(map)
-                                    .bindPopup(marker.name);
-                            });
+                    // Flaskから渡されたマーカー情報をJSON形式に変換
+                    var markers = {{ markers | tojson }};
+
+                    // すべてのマーカーを地図に表示
+                    markers.forEach(function (marker) {
+                        // カスタムアイコンを作成
+                        var iconOptions = {
+                            icon: L.icon({
+                                iconUrl: marker.url,         // マーカーの画像URL
+                                iconSize: [32, 32],          // アイコンのサイズ
+                                iconAnchor: [16, 32],        // アイコンのアンカー位置（中央下）
+                                popupAnchor: [0, -32]        // ポップアップのアンカー位置
+                            })
+                        };
+
+                        // マーカーを追加
+                        var mapMarker = L.marker([marker.lat, marker.lng], iconOptions).addTo(map);
+
+                        // マウスオーバーでポップアップを表示
+                        mapMarker.bindPopup("<b>" + marker.name + "</b>").openPopup();
+
+                        mapMarker.on('mouseover', function () {
+                            mapMarker.openPopup();
                         });
+
+                        mapMarker.on('mouseout', function () {
+                            mapMarker.closePopup();
+                        });
+                    });
                 </script>
 
             </section>
         </main>
 
-    <section class="details-section">
-        <div class="facility-info">
-            <h3>合宿候補</h3>
-            <ul>
-                {% for school in school %}
+        <section class="details-section">
+            <div class="facility-info">
+                <h3>合宿候補</h3>
+                <ul>
+                    {% for school in school %}
                     <li> {{ school.name }}</li> <!-- リストアイテムに●を追加 -->
-                {% endfor %}
-            </ul>
-        </div>
+                    {% endfor %}
+                </ul>
+            </div>
 
-        <div class="facility-info">
-            <h3>近隣の宿泊施設</h3>
-            <ul>
-                {% for hotel in hotel %}
+            <div class="facility-info">
+                <h3>近隣の宿泊施設</h3>
+                <ul>
+                    {% for hotel in hotel %}
                     <li> {{ hotel.name }}</li> <!-- リストアイテムに●を追加 -->
-                {% endfor %}
-            </ul>
-        </div>
+                    {% endfor %}
+                </ul>
+            </div>
 
-        <div class="facility-info">
-            <h3>近隣のおすすめ飲食店</h3>
-            <ul>
-                {% for food in food %}
+            <div class="facility-info">
+                <h3>近隣のおすすめ飲食店</h3>
+                <ul>
+                    {% for food in food %}
                     <li> {{ food.name }}</li> <!-- リストアイテムに●を追加 -->
-                {% endfor %}
-            </ul>
-        </div>
+                    {% endfor %}
+                </ul>
+            </div>
 
-    </section>
+        </section>
 
-    <footer class="footer">
-        Copyright © 2024 SkillCAMPUS in 盛岡
-    </footer>
+        <footer class="footer">
+            Copyright © 2024 SkillCAMPUS in 盛岡
+        </footer>
     </div>
 </body>
 

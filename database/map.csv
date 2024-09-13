@@ -1,0 +1,46 @@
+id,name,location,url,lat,lng,category,capacity
+1,盛岡市観光文化交流センター「プラザおでって」,〒020-0871 岩手県盛岡市中ノ橋通１丁目１−１０,/static/images/manabu.png,39.7000633,141.1547039,school,30
+2,アイーナ・いわて県民情報交流センター,〒020-0045 岩手県盛岡市盛岡駅西通１丁目７−１,/static/images/manabu.png,39.7018853,141.1328018,school,60
+3,サンビル(岩手県産業会館),〒020-0022 岩手県盛岡市大通１丁目２−１,/static/images/manabu.png,39.7021741,141.1497927,school,120
+4,ダイワロイネットホテル 盛岡,〒020-0034 岩手県盛岡市盛岡駅前通７−１５ ダイワロイネットホテル盛岡駅前 2F,/static/images/tomaru.png,39.7035064,141.1476877,hotel,0
+5,ドーミーイン盛岡,〒020-0021 岩手県盛岡市中央通２丁目８−１２,/static/images/tomaru.png,39.7053217,141.1445866,hotel,0
+6,アートホテル盛岡,〒020-0022 岩手県盛岡市大通３丁目３−１８,/static/images/tomaru.png,39.7038385,141.1424682,hotel,0
+7,スーパーホテル盛岡,〒020-0033 岩手県盛岡市盛岡駅前北通１０−３８,/static/images/tomaru.png,39.707102,141.1344591,hotel,0
+8,ホテルメトロポリタン盛岡 ニューウイング,〒020-0033 岩手県盛岡市盛岡駅前北通２−２７,/static/images/tomaru.png,39.7044042,141.1368758,hotel,0
+9,ユニゾインエクスプレス盛岡 / UNIZO INN Express Morioka,〒020-0045 岩手県盛岡市盛岡駅西通２丁目１０−２５,/static/images/tomaru.png,39.6999423,141.1324663,hotel,0
+10,三和旅館,〒020-0015 岩手県盛岡市本町通３丁目１８−３３,/static/images/tomaru.png,39.7075994,141.1445735,hotel,0
+11,かわのそば Kawanosoba - A tiny private lodging -,〒020-0807 岩手県盛岡市加賀野１丁目９−６,/static/images/tomaru.png,39.7059599,141.1603373,hotel,0
+12,ホテルエース盛岡,ホテルエース盛岡,/static/images/tomaru.png,39.7042939,141.1445742,hotel,0
+13,北ホテル,〒020-0023 岩手県盛岡市内丸１７−４５,/static/images/tomaru.png,39.7040484,141.153376,hotel,0
+14,ととと ー盛岡の泊まれるたまり場ー,〒020-0827 岩手県盛岡市鉈屋町１−２,/static/images/tomaru.png,39.6935942,141.1554139,hotel,0
+15,サンセール盛岡,〒020-0883 岩手県盛岡市志家町１−１０,/static/images/tomaru.png,39.6999544,141.1600943,hotel,0
+16,ホテルルートイン盛岡駅前,〒020-0034 岩手県盛岡市盛岡駅前通３−２５,/static/images/tomaru.png,39.7006867,141.1385073,hotel,0
+17,エスポワールいわて,エスポワールいわて,/static/images/tomaru.png,39.7027575,141.1497703,hotel,0
+18,盛岡ゲストハウス,〒020-0044 岩手県盛岡市城西町１−１９,/static/images/tomaru.png,39.7035383,141.1294699,hotel,0
+19,HOTEL JIN 盛岡駅前,〒020-0045 岩手県盛岡市盛岡駅西通１丁目６−１５ ＨＯＴＥＬ ＪＩＮ盛岡駅前,/static/images/tomaru.png,39.702741,141.1312847,hotel,0
+20,旅館 大正館,〒020-0025 岩手県盛岡市大沢川原２丁目５−３０,/static/images/tomaru.png,39.7001683,141.1436106,hotel,0
+21,東横INN盛岡駅南口駅前,〒020-0034 岩手県盛岡市盛岡駅前通１４−５,/static/images/tomaru.png,39.7015679,141.1391184,hotel,0
+22,ホテルパールシティ 盛岡,ホテルパールシティ 盛岡,/static/images/tomaru.png,39.703204,141.1411657,hotel,0
+23,熊ケ井旅館,熊ケ井旅館,/static/images/tomaru.png,39.7000441,141.1431667,hotel,0
+24,東家本店,〒020-0871 岩手県盛岡市中ノ橋通１丁目８−３,/static/images/taberu.png,39.7004865,141.1565753,food,0
+25,回転寿司すノ家 南大通店,〒020-0874 岩手県盛岡市南大通２丁目５−１５,/static/images/taberu.png,39.6949855,141.1547388,food,0
+26,福田パン 長田町本店,〒020-0062 岩手県盛岡市長田町１２−１１,/static/images/taberu.png,39.7082304,141.1420896,food,0
+27,ぴょんぴょん舎 盛岡駅前店,〒020-0034 岩手県盛岡市盛岡駅前通９−３ ジャーランビル,/static/images/taberu.png,39.7023323,141.1379077,food,0
+28,盛楼閣,〒020-0034 岩手県盛岡市盛岡駅前通１５−５,/static/images/taberu.png,39.702831,141.1365983,food,0
+29,Mi Cafeto 盛岡店,〒020-0045 岩手県盛岡市盛岡駅西通２丁目１９−２７,/static/images/taberu.png,39.6976768,141.1352115,food,0
+30,ら〜めん 初代,〒020-0045 岩手県盛岡市盛岡駅西通１丁目５−１１,/static/images/taberu.png,39.7035546,141.1306042,food,0
+31,T stand MORIOKA,〒020-0033 岩手県盛岡市盛岡駅前北通８−１９,/static/images/taberu.png,39.7069754,141.1351625,food,0
+32,RA-MEN IKKEN,〒020-0032 岩手県盛岡市夕顔瀬町２−１０,/static/images/taberu.png,39.7074838,141.133294,food,0
+33,MITAD-Y-MITAD -ミタ イ ミタ-,〒020-0063 岩手県盛岡市材木町３−１３,/static/images/taberu.png,39.7063529,141.1381545,food,0
+34,三寿司 菜園総本店,〒020-0024 岩手県盛岡市菜園２丁目５−３,/static/images/taberu.png,39.7022277,141.145393,food,0
+35,AERON STANDARD(アーロンスタンダード）,〒020-0022 岩手県盛岡市大通り３丁目６−２４ AERON bldg,/static/images/taberu.png,39.7030901,141.1417449,food,0
+36,浜味屋,〒020-0021 岩手県盛岡市中央通３丁目４−２８,/static/images/taberu.png,39.705516,141.1441466,food,0
+37,和かな 盛岡本店（ステーキ＆鉄板焼き）,〒020-0025 岩手県盛岡市大沢川原１丁目３−３３,/static/images/taberu.png,39.6998293,141.1483799,food,0
+38,蕎麦喰い処 やまや,〒020-0025 岩手県盛岡市大沢川原１丁目１−１６,/static/images/taberu.png,39.6988746,141.1483942,food,0
+39,ハンバーグのベル大通店,〒020-0022 岩手県盛岡市大通１丁目４−７,/static/images/taberu.png,39.7020862,141.1492858,food,0
+40,ひだまり亭,〒020-0807 岩手県盛岡市加賀野１丁目８−２１,/static/images/taberu.png,39.706154,141.1616224,food,0
+41,中華そば ふじわら屋,〒020-0878 岩手県盛岡市肴町８−１２,/static/images/taberu.png,39.6979337,141.153786,food,0
+42,初駒 わんこそば 本店,〒020-0872 岩手県盛岡市八幡町１０−２１,/static/images/taberu.png,39.6957544,141.1618932,food,0
+43,蕎麦将軍,〒020-0872 岩手県盛岡市八幡町３−１７,/static/images/taberu.png,39.697782,141.1586483,food,0
+44,敲太楼山荘,〒020-0887 岩手県盛岡市上ノ橋町１−２ 2F,/static/images/taberu.png,39.7053073,141.156998,food,0
+45,ベルクール,〒020-0015 岩手県盛岡市本町通１丁目８,/static/images/taberu.png,39.7054486,141.1553069,food,0

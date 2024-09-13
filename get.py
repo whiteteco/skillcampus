@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-from peewee import SqliteDatabase, Model, IntegerField, CharField, FloatField
+from peewee import SqliteDatabase, Model, IntegerField, CharField, DecimalField
 
 # Flask アプリケーション
 app = Flask(__name__)
@@ -12,8 +12,8 @@ db = SqliteDatabase("peewee_db_sqlite")
 class SCMap(Model):
     id = IntegerField()
     name = CharField()
-    lat = FloatField()
-    lng = FloatField()
+    lat = DecimalField()
+    lng = DecimalField()
     category = CharField()
     capacity = IntegerField()
 
