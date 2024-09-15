@@ -44,44 +44,65 @@
             <section class="map-section" style="flex-grow: 1;">
                 <div id="map" style="height: 100%; width: 100%;"></div>
                 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+                <!-- 地図表示部分のスクリプト -->
                 <script>
-                    var map = L.map('map').setView([39.6974099, 141.1442905], 14.5);  // 地図の中心座標（啄木父子の歌碑）
-
+                    var map = L.map('map').setView([39.6974099, 141.1442905], 14.5);  // 地図の中心座標
+                
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(map);
-
-                    // Flaskから渡されたマーカー情報をJSON形式に変換
-                    var markers = {{ markers | tojson }};
-
-                    // すべてのマーカーを地図に表示
-                    markers.forEach(function (marker) {
-                        // カスタムアイコンを作成
-                        var iconOptions = {
-                            icon: L.icon({
-                                iconUrl: marker.url,         // マーカーの画像URL
-                                iconSize: [32, 32],          // アイコンのサイズ
-                                iconAnchor: [16, 32],        // アイコンのアンカー位置（中央下）
-                                popupAnchor: [0, -32]        // ポップアップのアンカー位置
+                
+                    // マーカーを取得して表示する関数（ここにloadMarkers関数を追加）
+                    function loadMarkers(capacity) {
+                        fetch(`/get_markers?capacity=${capacity}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Markers received:", data);  // 受け取ったデータをコンソールに出力
+                
+                                // 既存のマーカーを削除
+                                map.eachLayer(function (layer) {
+                                    if (layer instanceof L.Marker) {
+                                        map.removeLayer(layer);  // 既存のマーカーを削除
+                                    }
+                                });
+                
+                                // 新しいマーカーを地図に表示
+                                data.forEach(function (marker) {
+                                    var iconOptions = {
+                                        icon: L.icon({
+                                            iconUrl: marker.url,
+                                            iconSize: [32, 32],
+                                            iconAnchor: [16, 32],
+                                            popupAnchor: [0, -32]
+                                        })
+                                    };
+                
+                                    var mapMarker = L.marker([marker.lat, marker.lng], iconOptions).addTo(map);
+                
+                                    mapMarker.bindPopup("<b>" + marker.name + "</b><br>最大収容人数: " + marker.capacity + "名");
+                
+                                    mapMarker.on('mouseover', function () {
+                                        mapMarker.openPopup();
+                                    });
+                
+                                    mapMarker.on('mouseout', function () {
+                                        mapMarker.closePopup();
+                                    });
+                                });
                             })
-                        };
-
-                        // マーカーを追加
-                        var mapMarker = L.marker([marker.lat, marker.lng], iconOptions).addTo(map);
-
-                        // マウスオーバーでポップアップを表示
-                        mapMarker.bindPopup("<b>" + marker.name + "</b>").openPopup();
-
-                        mapMarker.on('mouseover', function () {
-                            mapMarker.openPopup();
-                        });
-
-                        mapMarker.on('mouseout', function () {
-                            mapMarker.closePopup();
-                        });
+                            .catch(error => console.log(error));
+                    }
+                
+                    // Capacityの変更時にマーカーを更新
+                    document.getElementById('capacity').addEventListener('change', function () {
+                        var selectedCapacity = this.value;
+                        loadMarkers(selectedCapacity);  // 新しいマーカーを読み込み
                     });
+                
+                    // 初期表示（全てのマーカーを表示）
+                    loadMarkers(0);  // 初期表示では全てのマーカーを表示
                 </script>
-
+                
             </section>
         </main>
 
